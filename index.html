@@ -5,25 +5,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tapan Shah</title>
+  <title>Creatinine Predicition</title>
 
-  <!--
-    - favicon
-  -->
-  <link rel="shortcut icon" href="./assets/images/logo3.png" type="image/x-icon">
-
-  <!--
-    - custom css link
-  -->
   <link rel="stylesheet" href="./assets/css/style.css">
 
-  <!--
-    - google font link
-  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
@@ -31,104 +21,100 @@
   <main>
     <div class="main-content">
 
-      <nav class="navbar">
+      <!-- <nav class="navbar">
         <h2 class="org-title">Institutional Research & Analytics</h2>
-        <h3 class="org-description">ESRD Risk Tool for Kidney Donor Candidates</h3>
-      </nav>
+      </nav> -->
 
       <article class="main-page active" data-page="about">
-        
-
-        <header>
-          <h2 class="h2 article-title">Result</h2>
-        </header>
-
-        
-        <table style="border-collapse: collapse; width: 100%;" class="result-table">
-            <tr>
-                <th class="table-heading">Column 1</th>
-                <th class="table-heading">Column 2</th>
-            </tr>
-            <tr>
-                <td class="table-data">Data 1-1</td>
-                <td class="table-data">Data 1-2</td>
-            </tr>
-            <tr>
-                <td class="table-data">Data 2-1</td>
-                <td class="table-data">Data 2-2</td>
-            </tr>
-        </table>
+      
 
 
         <section class="patient-data">
-          <!-- <p>
-            Hello! I'm Tapan, and I have a passion for creating things on the internet. My journey into web development began in 2017 when I decided to experiment with editing custom web designs. It was through this process of hacking together web pages and working on small tasks that I gained valuable experience and knowledge in HTML and CSS.
-          </p>
-
-          <p>
-            Fast-forward to today, and I’ve had the privilege of working at <a class="about-me-link" href="https://viitorcloud.com/" target="_blank"> a start-up</a>. My main focus these days is building application accessible and inclusive digital experiences at <a class="about-me-link" href="https://www.csulb.edu/institutional-research-analytics" target="_blank">California State University, Long Beach - IRA Department</a> for all the students.
-          </p> -->
-
-          <h3 class="h3 tech-title">Patient Characteristics</h3>
-
-          <div class="form-field">            
-            <label class="select-field-label" for="cars">Age:</label>
-
-            <select class="select-field" name="ages" id="ages">
-            </select>
+          <div class="calculator-title">
+            <h3 class="h3 tech-title">Creatinine Predicition Calculator</h3>
+            <p>This calculator predicts 6-month post-donation kidney function for adult individuals considering living kidney donation.</p>
           </div>
 
-          <div class="form-field">            
-            <label class="select-field-label" for="cars">Gender:</label>
+          <div id="rectangle">
+            <p class="results-description" id="predicted-creatinine"><span id="predicted-creatinine-result"></span><span style="font-size: 20px; font-weight: 100;"> mg/dL</span></p>
+            <p>Predicted 6-month post-donation creatinine</p>
+          </div>
+          <div id="rectangle">
+            <p class="results-description"><span id="expected-eGFRcr-result"></span><span style="font-size: 20px; font-weight: 100;"> mL/min/1.73m<sup>2</sup></span></p>
+            <p>Expected 6-month post-donation eGFRcr</p>
+          </div>
+          
+          <form>
+            <div class="form-field input-group mb-3">
+              <label class="form-field-label" for="cars">Creatinine:</label>
+              <span class="input-field">
+                <input class="select-field" required type="number" id="creatinine" value="creatinine" name="creatinine" min="0.30" max="1.50" step="0.10">
+                <span class="input-group-text" id="basic-addon2">mg/dL</span>
+              </span>
+            </div>
 
-            <select class="select-field">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
+            <div class="form-field input-group mb-3">
+              <label class="form-field-label" for="cars">Age:</label>
+              <span class="input-field">
+                <input class="select-field" required type="number" id="age" value="age" name="age" min="18" max="85" step="1">
+                <span class="input-group-text" id="basic-addon2">Years</span>
+              </span>
+            </div>
+
+            <div class="form-field">            
+              <label class="form-field-label" for="cars">Sex:</label>
+  
+              <div class="button-bar gender">
+                <a class="button button-male active" type="button" value="male" onclick="setActiveGender('male')">Male</a>
+                <a class="button button-female" type="button" value="female" onclick="setActiveGender('female')">Female</a>
+              </div>
+            </div>
+          
+            <div class="form-field input-group mb-3">
+              <label class="form-field-label" for="cars">BMI:</label>
+              <span class="input-field">
+                <input class="select-field" required type="number" id="bmi" value="bmi" name="bmi" min="15" max="40" step="0.01">
+                <span class="input-group-text" id="basic-addon2">kg/m<sup>2</sup></span>
+              </span>
+            </div>
+
+            <div class="form-field input-group mb-3">
+              <label class="form-field-label" for="cars">Height:</label>
+              <span class="input-field">
+                <input class="select-field" required type="number" id="height" value="height" name="height" min="1.2" max="2.1" step="0.10">
+                <span class="input-group-text" id="basic-addon2">Meters</span>
+              </span>
+            </div>
+            <div class="form-field">            
+              <label class="form-field-label" for="cars">Hypertension:</label>
+
+              <div class="button-bar hypertension">
+                <a class="button button-noMedication active" onclick="setActiveHypertension('noMedication')">No Medication</a>
+                <a class="button button-medication" onclick="setActiveHypertension('medication')">Medication</a>
+              </div>
+            </div>
+
+            <div class="form-field-button">
+              <button class="submit-button" type="button" onclick="onSubmit()" >Calculate</button>
+            </div>
+
+            <div class="button-bar footer">
+              <a class="button button-model active" onclick="footerDescription('model')">Model Insights</a>
+              <a class="button button-discussion" onclick="footerDescription('discussion')">Discussion</a>
+            </div>
+
+            <p class="model-insights-description" id="model-insights-description">
+              This model is intended for adult individuals considering living kidney donation. It provides a predicted 6-month post-donation serum creatinine and an expected eGFR calculated based on the predicted serum creatinine using the race-free creatinine-based equation (CKD-EPI 2021).
+              <br>
+              <br>
+              The population used for this study included adult (≥18-year-old) living kidney donors who donated a kidney between January 2005 and June 2019 in the United States. The 6-month post-donation serum creatinine was modeled using multivariable linear regression.
+            </p>
+            <p class="discussion-description" id="discussion-description">
+              Consider applying this calculator to inform the living kidney donor candidate of her/his individualized predicted 6-month post-donation kidney function. Post-donation kidney function varies by individual characteristics. The decision-making to accept or decline a donor candidate should engage donor-provider discussions considering living kidney donation risks and benefits per individual case.
+            </p>
           </div>
 
-          <div class="form-field">            
-            <label class="select-field-label" for="cars">eGFR:</label>
-
-            <select class="select-field" name="egfr" id="egfr">
-            </select>
-          </div>
-
-          <div class="form-field">            
-            <label class="select-field-label" for="cars">eGFR:</label>
-
-            <select class="select-field">
-              <option value="white">White</option>
-              <option value="black">Black</option>
-            </select>
-          </div>
-
-          <div class="form-field">            
-            <label class="select-field-label" for="cars">Gender:</label>
-
-            <select class="select-field">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
-
-          <div class="form-field">            
-            <label class="select-field-label" for="cars">Gender:</label>
-
-            <select class="select-field">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
-
-          <div class="form-field">            
-            <label class="select-field-label" for="cars">Gender:</label>
-
-            <select class="select-field">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
+        </form>
           
         </section>
 
@@ -145,6 +131,8 @@
     - custom js link
   -->
   <script src="./assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 
   <!--
     - ionicon link

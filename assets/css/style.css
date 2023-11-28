@@ -515,6 +515,116 @@ main {
   #ABOUT
 \*-----------------------------------*/
 
+.results-description {
+  font-size: var(--fs-1) !important;
+  font-weight: var(--fw-600) !important;
+  margin-bottom: 0px;
+}
+
+.patient-details-heading {
+  font-size: var(--fs-1);
+  font-weight: var(--fw-600);
+  margin: 25px 0px 20px 0px
+}
+
+.form-field-label {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-600);
+}
+
+.button-bar {
+  display: flex;
+  min-width: 400px;
+  /* width: 60%; */
+  /* border-radius: 8px; */
+  /* border: 4px solid #145fd7; */
+}
+
+.button-bar a {
+  display: flex;
+  width: 50%;
+  text-align: center;
+  padding: 10px 26px;
+  cursor: pointer;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #000000;
+  font-weight: var(--fw-600);
+}
+
+form {
+  margin-top: 30px;
+}
+.button-bar a.active {
+  color: #fff;
+  background-color: rgb(16, 128, 97);
+}
+
+#rectangle{
+  margin-top: 20px;
+  padding: 10px;
+  color: #ffffff;
+  background:rgb(16, 128, 97);
+  border: 1px solid rgb(16, 128, 97);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#rectangle p {
+  margin-bottom: 0px;
+  font-size: 18px;
+  /* font-weight: var(--fw-500); */
+}
+
+.calculator-title {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.model-insights {
+  /* margin-top: 10px; */
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer {
+  margin-top: 20px;
+}
+
+.model-insights-title {
+  margin-bottom: 0px !important;
+  padding: 5px;
+}
+
+.model-insights-description {
+  text-align: left;
+  margin-bottom: 10px !important;
+  margin-top: 10px !important;
+  /* padding: 5px; */
+}
+
+.discussion-description {
+  text-align: left;
+  margin-bottom: 10px !important;
+  margin-top: 10px !important;
+}
+
+.calculator-title h3 {
+  font-weight: var(--fw-700);
+}
+
+.calculator-title p {
+  margin-bottom: 0px;
+  font-size: 16px;
+  text-align: left;
+}
+
 .main-page {
   display: flex;
   flex-direction: column;
@@ -548,18 +658,80 @@ header {
 
 .patient-data {
   text-align: center;
+  width: 50%;
 }
 
 .form-field {
   margin-bottom: 16px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center !important;
+  width: 100%;
+}
+
+.input-field {
+  display: flex;
+  min-width: 400px
+}
+
+.input-field input {
+  width: 80%;
+  border-radius: 10px 0px 0px 10px;
+}
+.input-field span {
+  width: 20%;
+  border-radius: 0px 10px 10px 0px;
+  justify-content: center;
+}
+
+.form-field-button {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0px 20px;
+  cursor: pointer;
+  background-color: rgb(16, 128, 97);
+  border-radius: 5px;
+}
+
+.submit-button {
+  padding: 10px 40px;
+  color: #ffffff;
 }
 
 .select-field-label {
   color: #000000;
   font-size: 20px;
   font-weight: 500;
+}
+
+input {
+  margin-left: 40px;
+  font-family: var(--ff-poppins);
+  appearance: none;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  width: 300px;
+}
+
+button{
+  display: flex;
 }
 
 select {
@@ -571,7 +743,7 @@ select {
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: white;
-  width: 200px;
+  width: 300px;
 }
 
 select::-ms-expand {

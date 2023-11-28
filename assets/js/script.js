@@ -1,185 +1,90 @@
 'use strict';
 
-const selectAges = document.getElementById('ages');
+var gender = 'male';
+var hypertension = 'noMedication';
 
-  for (let age = 18; age <= 80; age++) {
-      const option = document.createElement('option');
-      option.value = age;
-      option.textContent = age;
-      selectAges.appendChild(option);
+function setActiveGender(type) {
+  gender = type
+  var buttons = document.querySelectorAll('.gender a');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove('active');
   }
-
-
-const selecteGFR = document.getElementById('egfr');
-
-for (let egfr = 60; egfr <= 140; egfr+= 5) {
-    const option = document.createElement('option');
-    option.value = egfr;
-    option.textContent = egfr;
-    selecteGFR.appendChild(option);
+  document.querySelector('.button-' + type).classList.add('active');
 }
 
-const selectSystolicBloodPressure = document.getElementById('egfr');
+document.getElementById("discussion-description").style.display = 'none'
 
-for (let egfr = 60; egfr <= 170; egfr+= 5) {
-    const option = document.createElement('option');
-    option.value = egfr;
-    option.textContent = egfr;
-    selecteGFR.appendChild(option);
-}
-
-
-
-// element toggle function
-const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
-
-
-
-// sidebar variables
-const sidebar = document.querySelector("[data-sidebar]");
-const sidebarBtn = document.querySelector("[data-sidebar-btn]");
-
-// sidebar toggle functionality for mobile
-// sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
-
-
-
-// testimonials variables
-const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
-const modalContainer = document.querySelector("[data-modal-container]");
-const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
-const overlay = document.querySelector("[data-overlay]");
-
-// modal variable
-const modalImg = document.querySelector("[data-modal-img]");
-const modalTitle = document.querySelector("[data-modal-title]");
-const modalText = document.querySelector("[data-modal-text]");
-
-// modal toggle function
-// const testimonialsModalFunc = function () {
-//   modalContainer.classList.toggle("active");
-//   overlay.classList.toggle("active");
-// }
-
-// // add click event to all modal items
-// for (let i = 0; i < testimonialsItem.length; i++) {
-
-//   testimonialsItem[i].addEventListener("click", function () {
-
-//     modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
-//     modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-//     modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
-//     modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
-
-//     testimonialsModalFunc();
-
-//   });
-
-// }
-
-
-// custom select variables
-const select = document.querySelector("[data-select]");
-const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-selecct-value]");
-const filterBtn = document.querySelectorAll("[data-filter-btn]");
-
-//COMMENTED BECAUSE THERE WAS ERROR IN CONSOLE WHEN COMMENTED RESUME, PORTFOLIO & BLOG
-// select.addEventListener("click", function () { elementToggleFunc(this); });
-
-// add event in all select items
-for (let i = 0; i < selectItems.length; i++) {
-  selectItems[i].addEventListener("click", function () {
-
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    elementToggleFunc(select);
-    filterFunc(selectedValue);
-
-  });
-}
-
-// filter variables
-const filterItems = document.querySelectorAll("[data-filter-item]");
-
-const filterFunc = function (selectedValue) {
-
-  for (let i = 0; i < filterItems.length; i++) {
-
-    if (selectedValue === "all") {
-      filterItems[i].classList.add("active");
-    } else if (selectedValue === filterItems[i].dataset.category) {
-      filterItems[i].classList.add("active");
-    } else {
-      filterItems[i].classList.remove("active");
-    }
-
+function footerDescription(type) {
+  gender = type
+  var buttons = document.querySelectorAll('.footer a');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove('active');
   }
+  document.querySelector('.button-' + type).classList.add('active');
+  console.log(type)
 
+  if (type === 'model') {
+    document.getElementById("discussion-description").style.display = 'none'
+    document.getElementById("model-insights-description").style.display = 'block'
+  } else {
+    document.getElementById("discussion-description").style.display = 'block'
+    document.getElementById("model-insights-description").style.display = 'none'
+  }
 }
 
-// add event in all filter button items for large screen
-let lastClickedBtn = filterBtn[0];
-
-for (let i = 0; i < filterBtn.length; i++) {
-
-  filterBtn[i].addEventListener("click", function () {
-
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    filterFunc(selectedValue);
-
-    lastClickedBtn.classList.remove("active");
-    this.classList.add("active");
-    lastClickedBtn = this;
-
-  });
-
-}
-
-
-
-// contact form variables
-const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
-const formBtn = document.querySelector("[data-form-btn]");
-
-// add event to all form input field
-for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
-
-    // check form validation
-    if (form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
-    }
-
-  });
+function setActiveHypertension(type) {
+  hypertension = type
+  var buttons = document.querySelectorAll('.hypertension a');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove('active');
+  }
+  document.querySelector('.button-' + type).classList.add('active');
 }
 
 
+function onSubmit () {
+  var age = Number(document.getElementById("age").value);
+  var creatinine = Number(document.getElementById("creatinine").value);
+  var bmi = Number(document.getElementById("bmi").value);
+  var height = Number(document.getElementById("height").value);
+  // var patient = {
+  //   gender: gender,
+  //   hypertension: hypertension,
+  //   age: age,
+  //   creatinine: creatinine,
+  //   bmi: bmi,
+  //   height: height
+  // };
 
-// page navigation variables
-const navigationLinks = document.querySelectorAll("[data-nav-link]");
-const pages = document.querySelectorAll("[data-page]");
+  calculateDonorRisk(creatinine, gender, bmi, age, height, hypertension);
+}
 
-// add event to all nav link
-for (let i = 0; i < navigationLinks.length; i++) {
-  navigationLinks[i].addEventListener("click", function () {
-    console.log(navigationLinks)
-    console.log(pages)
+function calculateDonorRisk(predonationCreatinine, gender, BMI, age, height, hypertension) {
+  const maleCoefficient = gender == 'male' ? 1 : 0;
+  const hypertensionCoefficient = hypertension == 'noMedication' ? 0 : 1;
+  const predonationCreatinineCoefficientSeven = predonationCreatinine > 0.7 ? 1 : 0;
+  const predonationCreatinineCoefficientNine = predonationCreatinine > 0.9 ? 1 : 0;
+  const BMI30Term = BMI > 30 ? 1 : 0;
+  const age55Term = age > 55 ? 1 : 0;
 
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
-      }
-    }
+  const predictedCreatinine  =
+      0.0600344 + ((0.8191583 + (-0.3593172 * maleCoefficient)) * predonationCreatinine) + ((0.1311153 + (0.4733182 * maleCoefficient)) *(predonationCreatinine - 0.7) * predonationCreatinineCoefficientSeven) + (-0.1581432*(predonationCreatinine - 0.9) * predonationCreatinineCoefficientNine) + 0.3429115 * maleCoefficient + 0.0034174 * BMI + (-0.0025009 * (BMI - 30 ) * BMI30Term) + (0.0024177 * age) + (-0.0007185 * (age - 55) * age55Term) + (0.12903 * height) + (0.0074556 * hypertensionCoefficient)
 
-  });
+  console.log(predictedCreatinine)
+
+  const kCoefficient = gender == 'male' ? 0.9 : 0.7;
+  const alphaCoefficient = gender == 'male' ? -0.302 : 0.241;
+  const eGFRcrCoefficient = gender == 'male' ? 1 : 1.012;
+  const constant = 142;
+  const eGFRcrMin = Math.min(predictedCreatinine / kCoefficient, 1);
+  const eGFRcrMax = Math.max(predictedCreatinine / kCoefficient, 1);
+  const powerMin = Math.pow(eGFRcrMin, alphaCoefficient);
+  const powerMax = Math.pow(eGFRcrMax, -1.2);
+  const ageCoefficient = Math.pow(0.9938, age) * eGFRcrCoefficient;
+  const expectedeGFRcr = constant * powerMin * powerMax * ageCoefficient
+
+  console.log(expectedeGFRcr)
+
+  document.getElementById("predicted-creatinine-result").innerText = predictedCreatinine.toFixed(4)
+  document.getElementById("expected-eGFRcr-result").innerText = expectedeGFRcr.toFixed(4)
 }
